@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Genmato_ProductProfit>
+			<version>0.1.0</version>
+		</Genmato_ProductProfit>
+	</modules>
+	<global>
+		<blocks>
+			<genmato_productprofit>
+				<class>Genmato_ProductProfit_Block</class>
+			</genmato_productprofit>
+		</blocks>
+
+		<helpers>
+			<genmato_productprofit>
+				<class>Genmato_ProductProfit_Helper</class>
+			</genmato_productprofit>
+		</helpers>
+
+		<models>
+			<genmato_productprofit>
+				<class>Genmato_ProductProfit_Model</class>
+			</genmato_productprofit>
+		</models>
+	</global>
+</config>

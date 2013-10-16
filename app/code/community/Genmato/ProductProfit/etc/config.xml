@@ -23,5 +23,28 @@
 				<class>Genmato_ProductProfit_Model</class>
 			</genmato_productprofit>
 		</models>
+
+		<resources>
+			<genmato_productprofit_setup>
+				<setup>
+					<module>Genmato_ProductProfit</module>
+					<class>Genmato_ProductProfit_Model_Resource_Setup</class>
+				</setup>
+			</genmato_productprofit_setup>
+		</resources>
+
 	</global>
+
+	<adminhtml>
+		<events>
+			<eav_collection_abstract_load_before>
+				<observers>
+					<genmato_productprofit_product_grid_add>
+						<class>genmato_productprofit/observer</class>
+						<method>onEavLoadBefore</method>
+					</genmato_productprofit_product_grid_add>
+				</observers>
+			</eav_collection_abstract_load_before>
+		</events>
+	</adminhtml>
 </config>

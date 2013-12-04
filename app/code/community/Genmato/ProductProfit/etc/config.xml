@@ -45,6 +45,14 @@
 					</genmato_productprofit_product_grid_add>
 				</observers>
 			</eav_collection_abstract_load_before>
-		</events>
+            <catalog_product_collection_load_after>
+                <observers>
+                    <genmato_productprofit_product_collection_load_after>
+                        <class>genmato_productprofit/observer</class>
+                        <method>onProductCollectionLoadAfter</method>
+                    </genmato_productprofit_product_collection_load_after>
+                </observers>
+            </catalog_product_collection_load_after>
+        </events>
 	</adminhtml>
 </config>

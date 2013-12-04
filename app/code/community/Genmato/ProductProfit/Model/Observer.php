@@ -25,9 +25,9 @@ class Genmato_ProductProfit_Model_Observer {
         } else {
             if ($filter && is_array($filter)) {
             } else {
-                if (0 !== sizeof($this->_defaultFilter)) {
-                    $filter = $this->_defaultFilter;
-                }
+                //   if (0 !== sizeof($this->_defaultFilter)) {
+                //       $filter = $this->_defaultFilter;
+                //   }
             }
         }
 
@@ -69,6 +69,28 @@ class Genmato_ProductProfit_Model_Observer {
                 }
             }
         }
+    }
+
+    public function onProductCollectionLoadAfter(Varien_Event_Observer $observer)
+    {
+        $collection = $observer->getEvent()->getCollection();
+        if (!isset ($collection)) {
+            return;
+        }
+
+        foreach ($collection as $object) {
+            $cost = $object->getCost();
+            $price = $object->getFinalPrice();
+            if ($cost > 0) {
+                $profit = $price - $cost;
+                $object->setData('product_profit', $profit);
+                $ratio = ($profit / $price) * 100;
+                $object->setData('product_profit_ratio', $ratio);
+                Mage::log($object->getData());
+            }
+        }
+
+        return $this;
     }
 
 }

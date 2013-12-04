@@ -5,7 +5,8 @@
 			<active>true</active>
 			<codePool>community</codePool>
 			<depends>
-				<Mage_Catalog/>
+                <Genmato_Core/>
+                <Mage_Catalog/>
 			</depends>
 		</Genmato_ProductProfit>
 	</modules>

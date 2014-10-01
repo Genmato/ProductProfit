@@ -1,17 +1,25 @@
 <?php
+
 /**
  * @category    Genmato
  * @package     Genmato_ProductProfit
  * @copyright   Copyright (c) 2013 Genmato BV (http://genmato.com)
  */
+class Genmato_ProductProfit_Model_Observer
+{
 
-class Genmato_ProductProfit_Model_Observer {
-
-    public function addColumn(Mage_Adminhtml_Block_Catalog_Product_Grid $block, $column_id, $title, $after) {
-        $block->addColumnAfter($column_id, array('header' => Mage::helper('genmato_productprofit')->__($title),
-                                                 'width'  => '50px',
-                                                 'type'   => 'number',
-                                                 'index'  => $column_id,), $after);
+    public function addColumn(Mage_Adminhtml_Block_Catalog_Product_Grid $block, $column_id, $title, $after)
+    {
+        $block->addColumnAfter(
+            $column_id,
+            array(
+                'header' => Mage::helper('genmato_productprofit')->__($title),
+                'width' => '50px',
+                'type' => 'number',
+                'index' => $column_id,
+            ),
+            $after
+        );
         $block->sortColumnsByOrder();
 
         if ($block->getCollection()) {
@@ -31,7 +39,10 @@ class Genmato_ProductProfit_Model_Observer {
             }
         }
 
-        if (isset ($filter [$column_id]) && (!empty ($filter [$column_id]) || strlen($filter [$column_id]) > 0) && $column->getFilter()) {
+        if (isset ($filter [$column_id]) && (!empty ($filter [$column_id]) || strlen(
+                    $filter [$column_id]
+                ) > 0) && $column->getFilter()
+        ) {
 
             $column->getFilter()->setValue($filter [$column_id]);
 
@@ -49,7 +60,8 @@ class Genmato_ProductProfit_Model_Observer {
         }
     }
 
-    public function onEavLoadBefore(Varien_Event_Observer $observer) {
+    public function onEavLoadBefore(Varien_Event_Observer $observer)
+    {
         $collection = $observer->getCollection();
         if (!isset ($collection)) {
             return;
@@ -58,10 +70,17 @@ class Genmato_ProductProfit_Model_Observer {
         if (is_a($collection, 'Mage_Catalog_Model_Resource_Product_Collection')) {
 
             if (($productListBlock = Mage::app()->getLayout()
-                                     ->getBlock('products_list')) != false && ($productListBlock instanceof Mage_Adminhtml_Block_Catalog_Product)
+                    ->getBlock(
+                        'products_list'
+                    )) != false && ($productListBlock instanceof Mage_Adminhtml_Block_Catalog_Product)
             ) {
                 $this->addColumn($productListBlock->getChild('grid'), 'product_profit', 'Profit', 'price');
-                $this->addColumn($productListBlock->getChild('grid'), 'product_profit_ratio', 'Profit Ratio', 'product_profit');
+                $this->addColumn(
+                    $productListBlock->getChild('grid'),
+                    'product_profit_ratio',
+                    'Profit Ratio',
+                    'product_profit'
+                );
             } else {
                 if (($block = Mage::app()->getLayout()->getBlock('admin.product.grid')) != false) {
                     $this->addColumn($block, 'product_profit', 'Profit', 'price');
@@ -77,7 +96,7 @@ class Genmato_ProductProfit_Model_Observer {
         if (!isset ($collection)) {
             return;
         }
-
+        return;
         foreach ($collection as $object) {
             $cost = $object->getCost();
             $price = $object->getFinalPrice();

@@ -1,13 +1,13 @@
 <?xml version="1.0" ?>
 <config>
-	<modules>
-		<Genmato_ProductProfit>
-			<active>true</active>
-			<codePool>community</codePool>
-			<depends>
+    <modules>
+        <Genmato_ProductProfit>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
                 <Genmato_Core/>
                 <Mage_Catalog/>
-			</depends>
-		</Genmato_ProductProfit>
-	</modules>
+            </depends>
+        </Genmato_ProductProfit>
+    </modules>
 </config>

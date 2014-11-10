@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Genmato_ProductProfit>
-            <version>14.274.1</version>
+            <version>14.314.1</version>
         </Genmato_ProductProfit>
     </modules>
     <global>
@@ -37,14 +37,25 @@
 
     <adminhtml>
         <events>
-            <eav_collection_abstract_load_before>
+            <core_block_abstract_to_html_before>
                 <observers>
                     <genmato_productprofit_product_grid_add>
+                        <type>singleton</type>
                         <class>genmato_productprofit/observer</class>
-                        <method>onEavLoadBefore</method>
+                        <method>beforeBlockToHtml</method>
                     </genmato_productprofit_product_grid_add>
                 </observers>
+            </core_block_abstract_to_html_before>
+
+            <eav_collection_abstract_load_before>
+                <observers>
+                    <genmato_productprofit_product_collection_load_before>
+                        <class>genmato_productprofit/observer</class>
+                        <method>beforeCollectionLoad</method>
+                    </genmato_productprofit_product_collection_load_before>
+                </observers>
             </eav_collection_abstract_load_before>
+
             <catalog_product_collection_load_after>
                 <observers>
                     <genmato_productprofit_product_collection_load_after>

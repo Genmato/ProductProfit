@@ -12,9 +12,11 @@ class Genmato_ProductProfit_Model_Entity_Attribute_Backend_Profit extends Mage_E
     {
         $cost = $object->getCost();
 
-        $price = $object->getFinalPrice();
-
         if ($cost > 0) {
+            $finalPrice = $object->getFinalPrice();
+            $taxHelper = Mage::helper('tax');
+            $price = $taxHelper->getPrice($object, $finalPrice, false);
+
             $profit = $price - $cost;
             $object->setProductProfit($profit);
         }
@@ -26,9 +28,11 @@ class Genmato_ProductProfit_Model_Entity_Attribute_Backend_Profit extends Mage_E
     {
         $cost = $object->getCost();
 
-        $price = $object->getFinalPrice();
-
         if ($cost > 0) {
+            $finalPrice = $object->getFinalPrice();
+            $taxHelper = Mage::helper('tax');
+            $price = $taxHelper->getPrice($object, $finalPrice, false);
+
             $profit = $price - $cost;
             $object->setProductProfit($profit);
         }

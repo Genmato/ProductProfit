@@ -65,6 +65,7 @@ class Genmato_ProductProfit_Model_Observer
         foreach ($collection as $object) {
             $cost = $object->getCost();
             $price = $object->getFinalPrice();
+
             if ($cost > 0) {
                 $profit = $price - $cost;
                 $object->setData('product_profit', $profit);
